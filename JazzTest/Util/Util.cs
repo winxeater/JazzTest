@@ -6,7 +6,7 @@ namespace JazzTest.Util
     public static class Util
     {
         /// <summary>
-        /// Retorna uma string com a descrição setada para o Enum em questão.
+        /// Retorna descrição do Enum.
         /// </summary>
         /// <param name="val">Enum</param>
         /// <returns>Descrição do Enum
