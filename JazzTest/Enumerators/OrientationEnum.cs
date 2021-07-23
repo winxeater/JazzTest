@@ -5,12 +5,12 @@ namespace JazzTest.Enumerators
     public enum OrientationEnum
     {
         [Description("N")]
-        Norte = 0,
+        N = 0,
         [Description("S")]
-        Sul = 1,
+        S = 1,
         [Description("L")]
-        Leste = 2,
+        L = 2,
         [Description("O")]
-        Oeste = 3,
+        O = 3,
     }
 }

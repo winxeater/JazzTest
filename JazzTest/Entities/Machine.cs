@@ -17,7 +17,7 @@ namespace JazzTest.Entities
         {
             PositionX = 0;
             PositionY = 0;
-            Orientation = OrientationEnum.Norte;
+            Orientation = OrientationEnum.N;
             path = new StringBuilder();
         }
 
@@ -72,16 +72,16 @@ namespace JazzTest.Entities
 
             switch (Orientation)
             {
-                case OrientationEnum.Norte:
+                case OrientationEnum.N:
                     PositionY++;
                     break;
-                case OrientationEnum.Sul:
+                case OrientationEnum.S:
                     PositionY--;
                     break;
-                case OrientationEnum.Leste:
+                case OrientationEnum.L:
                     PositionX++;
                     break;
-                case OrientationEnum.Oeste:
+                case OrientationEnum.O:
                     PositionX--;
                     break;
                 default:
@@ -101,40 +101,40 @@ namespace JazzTest.Entities
 
                 switch (Orientation)
                 {
-                    case OrientationEnum.Norte:
+                    case OrientationEnum.N:
                         if (PositionY < currentPlat.PositionY)
                             action(ActionEnum.M, Orientation);
                         else if (PositionY > currentPlat.PositionY || PositionX > currentPlat.PositionX)
-                            action(ActionEnum.E, OrientationEnum.Oeste);
+                            action(ActionEnum.E, OrientationEnum.O);
                         else if (PositionX < currentPlat.PositionX)
-                            action(ActionEnum.D, OrientationEnum.Leste);
+                            action(ActionEnum.D, OrientationEnum.L);
                         break;
 
-                    case OrientationEnum.Sul:
+                    case OrientationEnum.S:
                         if (PositionY > currentPlat.PositionY)
                             action(ActionEnum.M, Orientation);
                         else if (PositionY < currentPlat.PositionY || PositionX < currentPlat.PositionX)
-                            action(ActionEnum.E, OrientationEnum.Leste);
+                            action(ActionEnum.E, OrientationEnum.L);
                         else if (PositionX > currentPlat.PositionX)
-                            action(ActionEnum.D, OrientationEnum.Oeste);
+                            action(ActionEnum.D, OrientationEnum.O);
                         break;
 
-                    case OrientationEnum.Leste:
+                    case OrientationEnum.L:
                         if (PositionX < currentPlat.PositionX)
                             action(ActionEnum.M, Orientation);
                         else if (PositionX > currentPlat.PositionX || PositionY < currentPlat.PositionY)
-                            action(ActionEnum.E, OrientationEnum.Norte);
+                            action(ActionEnum.E, OrientationEnum.N);
                         else if (PositionY > currentPlat.PositionY)
-                            action(ActionEnum.D, OrientationEnum.Sul);
+                            action(ActionEnum.D, OrientationEnum.S);
                         break;
 
-                    case OrientationEnum.Oeste:
+                    case OrientationEnum.O:
                         if (PositionX > currentPlat.PositionX)
                             action(ActionEnum.M, Orientation);
                         else if (PositionX < currentPlat.PositionX || PositionY > currentPlat.PositionY)
-                            action(ActionEnum.E, OrientationEnum.Sul);
+                            action(ActionEnum.E, OrientationEnum.S);
                         else if (PositionY < currentPlat.PositionY)
-                            action(ActionEnum.D, OrientationEnum.Norte);
+                            action(ActionEnum.D, OrientationEnum.N);
                         break;
 
                     default:
