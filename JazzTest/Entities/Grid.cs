@@ -7,7 +7,6 @@ namespace JazzTest.Entities
 {
     public sealed class Grid
     {
-        //properties
         public int SizeX { get; private set; }
         public int SizeY { get; private set; }
         private List<Plat> Plats { get; set; }
@@ -16,9 +15,9 @@ namespace JazzTest.Entities
         {
             SizeX = 0;
             SizeY = 0;
+            Plats = new List<Plat>();   
         }
 
-        //singleton
         private static Grid instance;
         public static Grid Instance => instance ?? (instance = new Grid());
 

@@ -42,22 +42,47 @@ namespace JazzTest.Entities
                 throw new Exception("O robô não está no canteiro.");
         }
 
-        private void action(ActionEnum action)
+        private void action(ActionEnum action, OrientationEnum orientation)
         {
             switch (action)
             {
                 case ActionEnum.D:
-                    path.Append(ActionEnum.D.toStringDescription());
+                    path.Append(ActionEnum.D.ToString());
                     break;
                 case ActionEnum.E:
-                    path.Append(ActionEnum.E.toStringDescription());
+                    path.Append(ActionEnum.E.ToString());
                     break;
                 case ActionEnum.M:
-                    path.Append(ActionEnum.M.toStringDescription());
+                    goStraight();
                     break;
                 case ActionEnum.I:
-                    path.Append(ActionEnum.I.toStringDescription());
+                    path.Append(ActionEnum.I.ToString());
                     Grid.Instance.nextPlat().setAlreadyDone();
+                    break;
+                default:
+                    break;
+            }
+
+            Orientation = orientation;
+        }
+
+        public void goStraight()
+        {
+            path.Append(ActionEnum.M.ToString());
+
+            switch (Orientation)
+            {
+                case OrientationEnum.Norte:
+                    PositionY++;
+                    break;
+                case OrientationEnum.Sul:
+                    PositionY--;
+                    break;
+                case OrientationEnum.Leste:
+                    PositionX++;
+                    break;
+                case OrientationEnum.Oeste:
+                    PositionX--;
                     break;
                 default:
                     break;
@@ -72,26 +97,44 @@ namespace JazzTest.Entities
             if (currentPlat != null)
             {
                 if (PositionX == currentPlat.PositionX && PositionY == currentPlat.PositionY)
-                    action(ActionEnum.I);
+                    action(ActionEnum.I, Orientation);
 
                 switch (Orientation)
                 {
                     case OrientationEnum.Norte:
                         if (PositionY < currentPlat.PositionY)
-                            action(ActionEnum.M);
-                        else if (PositionY > currentPlat.PositionY || PositionX < currentPlat.PositionX)
-                            action(ActionEnum.D);
-                        else if (PositionX > currentPlat.PositionX)
-                            action(ActionEnum.E);
+                            action(ActionEnum.M, Orientation);
+                        else if (PositionY > currentPlat.PositionY || PositionX > currentPlat.PositionX)
+                            action(ActionEnum.E, OrientationEnum.Oeste);
+                        else if (PositionX < currentPlat.PositionX)
+                            action(ActionEnum.D, OrientationEnum.Leste);
                         break;
 
                     case OrientationEnum.Sul:
+                        if (PositionY > currentPlat.PositionY)
+                            action(ActionEnum.M, Orientation);
+                        else if (PositionY < currentPlat.PositionY || PositionX < currentPlat.PositionX)
+                            action(ActionEnum.E, OrientationEnum.Leste);
+                        else if (PositionX > currentPlat.PositionX)
+                            action(ActionEnum.D, OrientationEnum.Oeste);
                         break;
 
                     case OrientationEnum.Leste:
+                        if (PositionX < currentPlat.PositionX)
+                            action(ActionEnum.M, Orientation);
+                        else if (PositionX > currentPlat.PositionX || PositionY < currentPlat.PositionY)
+                            action(ActionEnum.E, OrientationEnum.Norte);
+                        else if (PositionY > currentPlat.PositionY)
+                            action(ActionEnum.D, OrientationEnum.Sul);
                         break;
 
                     case OrientationEnum.Oeste:
+                        if (PositionX > currentPlat.PositionX)
+                            action(ActionEnum.M, Orientation);
+                        else if (PositionX < currentPlat.PositionX || PositionY > currentPlat.PositionY)
+                            action(ActionEnum.E, OrientationEnum.Sul);
+                        else if (PositionY < currentPlat.PositionY)
+                            action(ActionEnum.D, OrientationEnum.Norte);
                         break;
 
                     default:
