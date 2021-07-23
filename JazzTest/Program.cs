@@ -21,7 +21,7 @@ namespace JazzTest
 
             string resultPath = robot.GoRobot();
             Console.WriteLine($"Caminho: {resultPath}");
-            Console.WriteLine($"Orientação final: {robot.Orientation.toStringDescription()}");
+            Console.WriteLine($"Orientação final: {robot.Orientation.getDescription()}");
 
             Console.ReadLine();
         }

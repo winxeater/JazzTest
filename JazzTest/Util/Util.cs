@@ -11,7 +11,7 @@ namespace JazzTest.Util
         /// <param name="val">Enum</param>
         /// <returns>Descrição do Enum
         /// </returns>
-        public static string toStringDescription(this Enum val)
+        public static string getDescription(this Enum val)
         {
             if (!Enum.IsDefined(val.GetType(), val))
                 return string.Empty;
