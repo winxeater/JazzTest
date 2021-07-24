@@ -1,5 +1,4 @@
 ﻿using JazzTest.Enumerators;
-using JazzTest.Util;
 using System;
 using System.Text;
 
@@ -7,7 +6,6 @@ namespace JazzTest.Entities
 {
     public sealed class Machine
     {
-        //properties
         private int PositionX { get; set; }
         private int PositionY { get; set; }
         public OrientationEnum Orientation { get; private set; }
@@ -21,7 +19,6 @@ namespace JazzTest.Entities
             path = new StringBuilder();
         }
 
-        //singleton
         private static Machine instance;
         public static Machine Instance => instance ?? (instance = new Machine());
 
@@ -30,16 +27,6 @@ namespace JazzTest.Entities
             PositionX = x;
             PositionY = y;
             Orientation = o;
-        }
-
-        private void validate(int x, int y)
-        {
-            var grid = Grid.Instance;
-
-            grid.validate(grid.SizeX, grid.SizeY);
-
-            if (x > grid.SizeX || y > grid.SizeY || x < 0 || y < 0)
-                throw new Exception("O robô não está no canteiro.");
         }
 
         private void action(ActionEnum action, OrientationEnum orientation)

@@ -48,9 +48,9 @@
     <Compile Include="Enumerators\ActionEnum.cs" />
     <Compile Include="Enumerators\OrientationEnum.cs" />
     <Compile Include="Entities\Machine.cs" />
+    <Compile Include="ModelClasses\InputClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
